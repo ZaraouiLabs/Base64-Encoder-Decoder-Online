@@ -1,58 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="Q-XbM2cd_CNRexjUQ9VFpJqhZxqwaHPSdarqKCTSTPw" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Converter | Professional Tools</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <meta name="description" content="Quickly convert text to Base64 or decode Base64 back to text. A clean, professional tool for developers and designers. Fast, free, and mobile-friendly.">
+    <title>Base64 Encoder & Decoder Online| UtilitySuite</title>
+    <meta name="description" content="Convert your text or images to Base64 format and back again. Fast, secure, and free online utility.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #6366f1; --bg: #f8fafc; --card: #ffffff; }
-        body { margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: #0f172a; padding: 20px; }
-        .wrapper { width: 95%; max-width: 800px; margin: 0 auto; }
-        
-        .ad-container { margin: 20px auto; border-radius: 16px; overflow: hidden; display: flex; justify-content: center; background: #f1f5f9; align-items: center; border: 1px solid #e2e8f0; width: 100%; min-height: 90px; }
+        :root { 
+            --bg-color: #f1f5f9; 
+            --primary: #4f46e5;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --font-family: 'Outfit', sans-serif;
+        }
+        body { margin: 0; font-family: var(--font-family); background-color: var(--bg-color); color: var(--text); display: flex; min-height: 100vh; }
 
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { margin: 0; font-size: 2.5rem; color: #6366f1; font-weight: 800; }
+        .top-accent { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary); z-index: 1000; }
+
+        .sidebar { width: 260px; background: white; border-right: 1px solid var(--border); padding: 60px 20px; flex-shrink: 0; }
+        .brand { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.25em; color: #64748b; margin-bottom: 30px; padding-left: 20px; }
         
-        .card { background: var(--card); padding: 40px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-        textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; box-sizing: border-box; font-family: monospace; font-size: 14px; margin-bottom: 20px; }
+        #tools-sidebar { display: flex; flex-direction: column; }
+        .tool-btn { 
+            display: block; padding: 16px 20px; margin: 2px 0; border-radius: 10px; 
+            text-decoration: none; color: #475569; font-size: 13px; font-weight: 600; 
+            transition: all 0.2s; border-bottom: 1px solid #f8fafc;
+        }
+        .tool-btn:hover { background: #f5f3ff; color: var(--primary); border-bottom-color: #e0e7ff; }
+
+        .main-content { flex: 1; padding: 60px 40px; display: flex; flex-direction: column; align-items: center; }
+        .wrapper { max-width: 800px; width: 100%; }
+
+        h1 { margin: 0 0 40px 0; color: #0f172a; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; }
+
+        .ad-container { display: flex; justify-content: center; margin: 20px 0; overflow: hidden; }
         
+        .card { background: white; padding: 32px; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+        
+        textarea { width: 100%; min-height: 250px; border: 2px solid var(--border); border-radius: 12px; padding: 20px; font-size: 16px; font-family: 'Courier New', Courier, monospace; box-sizing: border-box; outline: none; margin-bottom: 20px; background: #fcfcfd; }
+        textarea:focus { border-color: var(--primary); }
+
         .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        button { background: #6366f1; color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        button:hover { filter: brightness(1.1); }
+        .action-btn { padding: 18px; border-radius: 12px; border: none; color: white; font-weight: 700; cursor: pointer; transition: 0.2s; font-family: var(--font-family); }
+        .action-btn:hover { filter: brightness(1.1); }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 30px 20px; }
+            .main-content { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
+
+    <div class="top-accent"></div>
+
+    <aside class="sidebar">
+        <div class="brand">UtilitySuite</div>
+        <div id="tools-sidebar"></div>
+    </aside>
+
+    <main class="main-content">
+        <div class="wrapper">
             <h1>Base64 Converter</h1>
-        </header>
 
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {'key' : 'ea9023c6230a4134ea2bb21d415f3647', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {}};
-            </script>
-            <script type="text/javascript" async src="https://www.highperformanceformat.com/ea9023c6230a4134ea2bb21d415f3647/invoke.js"></script>
-        </div>
+            <div class="ad-container">
+                <script>atOptions = {'key' : 'ea9023c6230a4134ea2bb21d415f3647', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {}};</script>
+                <script src="https://www.highperformanceformat.com/ea9023c6230a4134ea2bb21d415f3647/invoke.js"></script>
+            </div>
 
-        <div class="card">
-            <textarea id="input" placeholder="Paste text or Base64 here..."></textarea>
-            <div class="button-group">
-                <button onclick="convert(true)">Encode to Base64</button>
-                <button onclick="convert(false)" style="background: #475569;">Decode Base64</button>
+            <div class="card">
+                <textarea id="input" placeholder="Paste text or Base64 here..."></textarea>
+                <div class="button-group">
+                    <button class="action-btn" style="background: var(--primary);" onclick="convert(true)">Encode to Base64</button>
+                    <button class="action-btn" style="background: #475569;" onclick="convert(false)">Decode Base64</button>
+                </div>
+            </div>
+
+            <div class="ad-container">
+                <script>atOptions = {'key' : '7cf39fb102b8e5ac06d9ab8ec745e58c', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {}};</script>
+                <script src="https://www.highperformanceformat.com/7cf39fb102b8e5ac06d9ab8ec745e58c/invoke.js"></script>
             </div>
         </div>
-
-        <div class="ad-container" style="min-height: 250px;">
-            <script type="text/javascript">
-                atOptions = {'key' : '7cf39fb102b8e5ac06d9ab8ec745e58c', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {}};
-            </script>
-            <script type="text/javascript" async src="https://www.highperformanceformat.com/7cf39fb102b8e5ac06d9ab8ec745e58c/invoke.js"></script>
-        </div>
-    </div>
+    </main>
 
     <script>
         function convert(isEncode) {
@@ -61,7 +92,22 @@
                 input.value = isEncode ? btoa(input.value) : atob(input.value);
             } catch (e) { alert("Invalid input for this operation!"); }
         }
+
+        const tools = [
+            { name: "QR Generator", url: "https://zaraouilabs.github.io/QR-Code-Generator/" },
+            { name: "Image Compressor", url: "https://zaraouilabs.github.io/Image-Compressor/" },
+            { name: "Date Calculator", url: "https://zaraouilabs.github.io/Date-Calculator/" },
+            { name: "HEIC Converter", url: "https://zaraouilabs.github.io/HEIC-to-JPEG-converter/" },
+            { name: "WebP Converter", url: "https://zaraouilabs.github.io/webp-to-jpg-convertor/" },
+            { name: "JSON Formatter", url: "https://zaraouilabs.github.io/JSON-formatter/" },
+            { name: "Word Counter", url: "https://zaraouilabs.github.io/wordcount-pro/" },
+            { name: "Case Converter", url: "https://zaraouilabs.github.io/case-converter/" },
+            { name: "Percentage Calc", url: "https://zaraouilabs.github.io/percentage_counter/" },
+            { name: "Password Generator", url: "https://zaraouilabs.github.io/Password_Generator/" },
+            { name: "Loan Calculator", url: "https://zaraouilabs.github.io/loan-calculator/" }
+        ];
+        document.getElementById('tools-sidebar').innerHTML = tools.map(t => `<a href="${t.url}" class="tool-btn">${t.name}</a>`).join('');
     </script>
     <script src="https://pl30403648.effectivecpmnetwork.com/8d/6e/16/8d6e16cf626599011a4b1d03060dc5cf.js"></script>
 </body>
-</html>s
+</html>
